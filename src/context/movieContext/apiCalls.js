@@ -8,6 +8,9 @@ import {
   deleteMovieFailure,
   deleteMovieStart,
   deleteMovieSuccess,
+  updateMovieStart,
+  updateMovieSuccess,
+  updateMovieFailure,
 } from './MovieActions'
 
 import axios from 'axios'
@@ -65,6 +68,28 @@ export const deleteMovie = async (id, dispatch) => {
     dispatch(deleteMovieSuccess(id))
   } catch (error) {
     dispatch(deleteMovieFailure())
+    console.log(error)
+  }
+}
+
+export const updateMovie = async (movie, dispatch) => {
+  dispatch(updateMovieStart())
+
+  try {
+    const res = await axios.put(
+      process.env.REACT_APP_API_URL + 'movies',
+      movie,
+      {
+        headers: {
+          token:
+            'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+        },
+      }
+    )
+    console.log(res)
+    dispatch(updateMovieSuccess(movie))
+  } catch (error) {
+    dispatch(updateMovieFailure())
     console.log(error)
   }
 }

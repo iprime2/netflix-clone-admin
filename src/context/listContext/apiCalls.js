@@ -30,7 +30,6 @@ export const getLists = async (dispatch) => {
 
 export const createList = async (list, dispatch) => {
   dispatch(createListStart())
-
   try {
     const res = await axios.post(
       process.env.REACT_APP_API_URL + 'lists',
@@ -42,6 +41,7 @@ export const createList = async (list, dispatch) => {
         },
       }
     )
+    console.log(res)
     dispatch(createListSuccess(list))
   } catch (error) {
     dispatch(createListFailure())

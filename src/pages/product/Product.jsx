@@ -1,7 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
 import './product.css'
-import Chart from '../../components/chart/Chart'
-import { productData } from '../../dummyData'
 import PublishIcon from '@mui/icons-material/Publish'
 
 export default function Product() {
