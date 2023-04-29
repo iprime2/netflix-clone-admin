@@ -9,6 +9,11 @@ import {
 } from 'firebase/storage'
 import { createMovie } from '../../context/movieContext/apiCalls'
 import { MovieContext } from '../../context/movieContext/MovieContext'
+import PropTypes from 'prop-types'
+import CircularProgress from '@mui/material/CircularProgress'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
+import SuccessModal from '../../components/SuccessModal/SuccessModal'
 
 export default function NewProduct() {
   const [newMovieData, setNewMovieData] = useState(null)
@@ -18,6 +23,9 @@ export default function NewProduct() {
   const [newMovieTrailer, setNewMovieTrailer] = useState(null)
   const [newMovieVideo, setNewMovieVideo] = useState(null)
   const [Uploaded, setUploaded] = useState(0)
+  const [uploading, setUploading] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [open, setOpen] = useState(false)
 
   const { dispatch } = useContext(MovieContext)
 
@@ -31,9 +39,14 @@ export default function NewProduct() {
     }))
   }
 
+  const handleOpen = () => {
+    setOpen(false)
+    window.location.reload(false)
+  }
+
   const upload = (items) => {
+    setUploading(true)
     items.forEach((item) => {
-      console.log(item.file.name)
       const fileName = new Date().getTime() + item.label + item.file.name
       const storage = getStorage()
       const storageRef = ref(storage, `/items/${fileName}`)
@@ -41,9 +54,11 @@ export default function NewProduct() {
       uploadTask.on(
         'state_changed',
         (snapshot) => {
-          const progress =
+          const progress = Math.floor(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          console.log('Upload is ' + progress + '  % done')
+          )
+          console.log('Upload is ' + progress + ' % done')
+          setProgress(progress)
         },
         (err) => {
           console.log(err)
@@ -61,6 +76,7 @@ export default function NewProduct() {
         }
       )
     })
+    //setUploading(false)
   }
 
   const handleUpload = (e) => {
@@ -74,11 +90,21 @@ export default function NewProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    createMovie(newMovieData, dispatch)
+    try {
+      createMovie(newMovieData, dispatch)
+      setOpen(true)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
     <div className='newProduct'>
+      <SuccessModal
+        open={open}
+        handleOpen={handleOpen}
+        modalBody='Movie/Series Created Successfully !!'
+      />
       <h1 className='addProductTitle'>New Movie</h1>
       <form>
         <div className='addProductForm'>
@@ -196,10 +222,56 @@ export default function NewProduct() {
           </button>
         ) : (
           <button className='addProductButton' onClick={handleUpload}>
-            Upload
+            {uploading ? (
+              <CircularProgressWithLabel value={progress} />
+            ) : (
+              'Upload'
+            )}
           </button>
         )}
       </form>
     </div>
   )
+}
+
+function CircularProgressWithLabel(props) {
+  return (
+    <Box sx={{ position: 'relative', display: 'inline-flex' }}>
+      <CircularProgress
+        variant='determinate'
+        {...props}
+        style={{ color: 'lightgreen', fontWeight: '600', fontSize: '18px' }}
+      />
+      <Box
+        sx={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+          position: 'absolute',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography
+          variant='caption'
+          component='div'
+          color='white'
+          style={{ fontWeight: '600' }}
+        >
+          {`${Math.round(props.value)}%`}
+        </Typography>
+      </Box>
+    </Box>
+  )
+}
+
+CircularProgressWithLabel.propTypes = {
+  /**
+   * The value of the progress indicator for the determinate variant.
+   * Value between 0 and 100.
+   * @default 0
+   */
+  value: PropTypes.number.isRequired,
 }

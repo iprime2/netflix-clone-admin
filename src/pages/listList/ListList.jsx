@@ -14,6 +14,7 @@ export default function ListList() {
 
   useEffect(() => {
     getLists(dispatch)
+    console.log('render')
   }, [dispatch])
 
   console.log(lists)
@@ -56,6 +57,9 @@ export default function ListList() {
 
   return (
     <div className='productList'>
+      <Link to='/newlist'>
+        <button className='productAddButtonListTable'>Create</button>
+      </Link>
       {lists && (
         <DataGrid
           rows={lists}

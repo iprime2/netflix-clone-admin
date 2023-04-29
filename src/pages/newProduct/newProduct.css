@@ -41,3 +41,7 @@
   cursor: pointer;
   width: 100%;
 }
+
+.progressBar {
+  color: white;
+}

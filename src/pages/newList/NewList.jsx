@@ -5,17 +5,27 @@ import { ListContext } from '../../context/listContext/ListContext'
 import { MovieContext } from '../../context/movieContext/MovieContext'
 import { getMovies } from '../../context/movieContext/apiCalls'
 import { useHistory } from 'react-router-dom'
+import SuccessModal from '../../components/SuccessModal/SuccessModal'
 
 export default function NewProduct() {
   const [list, setList] = useState(null)
 
   const { dispatch } = useContext(ListContext)
   const { movies, dispatch: dispatchMovies } = useContext(MovieContext)
+  const [movieData, setMovieData] = useState(null)
+
+  const [open, setOpen] = useState(false)
+
+  const handleOpen = () => {
+    setOpen(false)
+    window.location.reload(false)
+  }
 
   const history = useHistory()
 
   useEffect(() => {
     getMovies(dispatchMovies)
+    setMovieData(movies)
   }, [dispatchMovies])
 
   const handleMovie = (e) => {
@@ -30,8 +40,13 @@ export default function NewProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    createList(list, dispatch)
-    history.push('/lists')
+    try {
+      createList(list, dispatch)
+      setOpen(true)
+    } catch (error) {
+      console.log(error)
+    }
+    //history.push('/lists')
   }
 
   const handleSelect = (e) => {
@@ -39,10 +54,24 @@ export default function NewProduct() {
     setList({ ...list, [e.target.name]: value })
   }
 
-  console.log(list)
+  useEffect(() => {
+    if (list) {
+      if (list.type === 'series') {
+        movieData.filter((movie) => movie.isSeries)
+        console.log('here')
+      } else if (list.type === 'movie') {
+        movieData.filter((movie) => !movie.isSeries)
+      }
+    }
+  }, [list?.type])
 
   return (
     <div className='newProduct'>
+      <SuccessModal
+        open={open}
+        handleOpen={handleOpen}
+        modalBody='List Created Successfully!!'
+      />
       <h1 className='addProductTitle'>New Movie</h1>
       <form>
         <div className='addProductForm'>
