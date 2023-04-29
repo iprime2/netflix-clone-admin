@@ -165,9 +165,10 @@ export default function NewProduct() {
           </div>
           <div className='addProductItem'>
             <label>Series</label>
-            <select name='isSeries' id='isSeries'>
-              <option value='false'>No</option>
-              <option value='true'>Yes</option>
+            <select name='isSeries' id='isSeries' onChange={handleMovie}>
+              <option>Select</option>
+              <option value={false}>No</option>
+              <option value={true}>Yes</option>
             </select>
           </div>
           <div className='addProductItem'>

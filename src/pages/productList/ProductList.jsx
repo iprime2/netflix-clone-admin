@@ -86,6 +86,9 @@ export default function ProductList() {
 
   return (
     <div className='productList'>
+      <Link to='/newproduct'>
+        <button className='productAddButtonList'>Create</button>
+      </Link>
       {movies && (
         <DataGrid
           rows={movies}
