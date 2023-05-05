@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react'
 import './login.scss'
 import { AuthContext } from '../../context/authContext/AuthContext'
-import { login } from '../../context/authContext/apicalls'
+import { useLogin } from '../../context/authContext/apicalls'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { isFetching, dispatch } = useContext(AuthContext)
+
+  const { loading, login } = useLogin()
 
   const handleClick = (e) => {
     e.preventDefault()
@@ -16,16 +19,17 @@ const Login = () => {
   return (
     <div className='login'>
       <div className='loginForm'>
+        <p className='loginTitle'>Login Into Movie Streaming Admin Panel</p>
         <input
           type='text'
           className='loginInput'
-          placeholder='email'
+          placeholder='Email'
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type='password'
           className='loginInput'
-          placeholder='password'
+          placeholder='Password'
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
@@ -33,8 +37,16 @@ const Login = () => {
           onClick={handleClick}
           disabled={isFetching}
         >
-          Login
+          {loading ? (
+            <CircularProgress style={{ fontSize: '12px' }} />
+          ) : (
+            'Login'
+          )}
         </button>
+
+        <span className='loginInfo'>
+          Demo Account (id:"demo@demo.com" password:"123456")
+        </span>
       </div>
     </div>
   )

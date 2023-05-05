@@ -4,22 +4,87 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background: -webkit-linear-gradient(
+    45deg,
+    #131313 0%,
+    #666666 17%,
+    #666666 17%,
+    #2b2b2b 33%,
+    #111111 40%,
+    #000000 44%,
+    #474747 61%,
+    #2c2c2c 68%,
+    #2c2c2c 68%,
+    #1c1c1c 78%,
+    #595959 88%,
+    #4c4c4c 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    45deg,
+    #131313 0%,
+    #666666 17%,
+    #666666 17%,
+    #2b2b2b 33%,
+    #111111 40%,
+    #000000 44%,
+    #474747 61%,
+    #2c2c2c 68%,
+    #2c2c2c 68%,
+    #1c1c1c 78%,
+    #595959 88%,
+    #4c4c4c 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
   .loginForm {
     display: flex;
     flex-direction: column;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.775);
+    border-radius: 20px;
+    gap: 10px;
+
+    .loginTitle {
+      margin-bottom: 10px;
+      font-weight: 800;
+      font-size: 18px;
+      color: white;
+    }
 
     .loginInput {
       margin-bottom: 10px;
-      padding: 5px;
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+      border-bottom: 1px solid gray;
+      caret-color: white;
+      color: white;
+
+      &:focus {
+        outline: none;
+        color: white;
+      }
     }
 
     .loginBtn {
-      background-color: teal;
+      background-color: darkblue;
       border: none;
-      color: white;
-      padding: 5px;
+      color: whitesmoke;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 10px;
       cursor: pointer;
+      border: none;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: lightsteelblue;
+        color: black;
+      }
+    }
+
+    .loginInfo {
+      font-weight: 400;
+      color: white;
     }
   }
 }

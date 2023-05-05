@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { MovieContext } from '../../context/movieContext/MovieContext'
 import { getMovies, deleteMovie } from '../../context/movieContext/apiCalls'
+import Topbar from '../../components/topbar/Topbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function ProductList() {
   const { movies, dispatch } = useContext(MovieContext)
@@ -86,19 +88,25 @@ export default function ProductList() {
 
   return (
     <div className='productList'>
-      <Link to='/newproduct'>
-        <button className='productAddButtonList'>Create</button>
-      </Link>
-      {movies && (
-        <DataGrid
-          rows={movies}
-          disableSelectionOnClick
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-          getRowId={(row) => row._id}
-        />
-      )}
+      <Topbar />
+      <div className='container'>
+        <Sidebar />
+        <div className='subContainer'>
+          <Link to='/newproduct'>
+            <button className='productAddButtonList'>Create</button>
+          </Link>
+          {movies && (
+            <DataGrid
+              rows={movies}
+              disableSelectionOnClick
+              columns={columns}
+              pageSize={8}
+              checkboxSelection
+              getRowId={(row) => row._id}
+            />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

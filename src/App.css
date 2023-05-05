@@ -1,10 +1,14 @@
-.container{
-    display: flex;
-    margin-top: 10px;
+.container {
+  display: flex;
+  margin-top: 10px;
 }
 
+.subContainer {
+  flex: 5;
+  padding: 25px;
+}
 
-.link{
-    text-decoration: none;
-    color: inherit;
+.link {
+  text-decoration: none;
+  color: inherit;
 }

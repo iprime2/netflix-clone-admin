@@ -14,6 +14,8 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import SuccessModal from '../../components/SuccessModal/SuccessModal'
+import Topbar from '../../components/topbar/Topbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function NewProduct() {
   const [newMovieData, setNewMovieData] = useState(null)
@@ -105,131 +107,137 @@ export default function NewProduct() {
         handleOpen={handleOpen}
         modalBody='Movie/Series Created Successfully !!'
       />
-      <h1 className='addProductTitle'>New Movie</h1>
-      <form>
-        <div className='addProductForm'>
-          <div className='addProductItem'>
-            <label>Image</label>
-            <input
-              type='file'
-              id='img'
-              name='Image'
-              onChange={(e) => setNewMovieImg(e.target.files[0])}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Title Image</label>
-            <input
-              type='file'
-              id='imgTitle'
-              name='titleImg'
-              onChange={(e) => setNewMovieTitleImg(e.target.files[0])}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Thumbnail Image</label>
-            <input
-              type='file'
-              id='imgThumbnail'
-              name='imgThumb'
-              onChange={(e) => setNewMovieThumbImg(e.target.files[0])}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Title</label>
-            <input
-              type='text'
-              placeholder='John Wick'
-              name='title'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Desc</label>
-            <input
-              type='text'
-              placeholder='about movie'
-              name='desc'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Year</label>
-            <input
-              type='text'
-              placeholder='Year'
-              name='year'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Genre</label>
-            <input
-              type='text'
-              placeholder='Genre'
-              name='genre'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Duration</label>
-            <input
-              type='text'
-              placeholder='Duration'
-              name='duration'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>limit</label>
-            <input
-              type='text'
-              placeholder='limit'
-              name='limit'
-              onChange={handleMovie}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Series</label>
-            <select name='isSeries' id='isSeries' onChange={handleMovie}>
-              <option>Select</option>
-              <option value={false}>No</option>
-              <option value={true}>Yes</option>
-            </select>
-          </div>
-          <div className='addProductItem'>
-            <label>Trailer</label>
-            <input
-              type='file'
-              id='trailer'
-              name='trailer'
-              onChange={(e) => setNewMovieTrailer(e.target.files[0])}
-            />
-          </div>
-          <div className='addProductItem'>
-            <label>Video</label>
-            <input
-              type='file'
-              id='Video'
-              name='video'
-              onChange={(e) => setNewMovieVideo(e.target.files[0])}
-            />
-          </div>
-        </div>
-        {Uploaded === 5 ? (
-          <button className='addProductButton' onClick={handleSubmit}>
-            Create
-          </button>
-        ) : (
-          <button className='addProductButton' onClick={handleUpload}>
-            {uploading ? (
-              <CircularProgressWithLabel value={progress} />
+      <Topbar />
+      <div className='container'>
+        <Sidebar />
+        <div className='subContainer'>
+          <h1 className='addProductTitle'>New Movie</h1>
+          <form>
+            <div className='addProductForm'>
+              <div className='addProductItem'>
+                <label>Image</label>
+                <input
+                  type='file'
+                  id='img'
+                  name='Image'
+                  onChange={(e) => setNewMovieImg(e.target.files[0])}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Title Image</label>
+                <input
+                  type='file'
+                  id='imgTitle'
+                  name='titleImg'
+                  onChange={(e) => setNewMovieTitleImg(e.target.files[0])}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Thumbnail Image</label>
+                <input
+                  type='file'
+                  id='imgThumbnail'
+                  name='imgThumb'
+                  onChange={(e) => setNewMovieThumbImg(e.target.files[0])}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Title</label>
+                <input
+                  type='text'
+                  placeholder='John Wick'
+                  name='title'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Desc</label>
+                <input
+                  type='text'
+                  placeholder='about movie'
+                  name='desc'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Year</label>
+                <input
+                  type='text'
+                  placeholder='Year'
+                  name='year'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Genre</label>
+                <input
+                  type='text'
+                  placeholder='Genre'
+                  name='genre'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Duration</label>
+                <input
+                  type='text'
+                  placeholder='Duration'
+                  name='duration'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>limit</label>
+                <input
+                  type='text'
+                  placeholder='limit'
+                  name='limit'
+                  onChange={handleMovie}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Series</label>
+                <select name='isSeries' id='isSeries' onChange={handleMovie}>
+                  <option>Select</option>
+                  <option value={false}>No</option>
+                  <option value={true}>Yes</option>
+                </select>
+              </div>
+              <div className='addProductItem'>
+                <label>Trailer</label>
+                <input
+                  type='file'
+                  id='trailer'
+                  name='trailer'
+                  onChange={(e) => setNewMovieTrailer(e.target.files[0])}
+                />
+              </div>
+              <div className='addProductItem'>
+                <label>Video</label>
+                <input
+                  type='file'
+                  id='Video'
+                  name='video'
+                  onChange={(e) => setNewMovieVideo(e.target.files[0])}
+                />
+              </div>
+            </div>
+            {Uploaded === 5 ? (
+              <button className='addProductButton' onClick={handleSubmit}>
+                Create
+              </button>
             ) : (
-              'Upload'
+              <button className='addProductButton' onClick={handleUpload}>
+                {uploading ? (
+                  <CircularProgressWithLabel value={progress} />
+                ) : (
+                  'Upload'
+                )}
+              </button>
             )}
-          </button>
-        )}
-      </form>
+          </form>
+        </div>
+      </div>
     </div>
   )
 }

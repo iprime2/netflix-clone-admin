@@ -8,16 +8,15 @@ import { Link } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { getLists, deleteList } from '../../context/listContext/apiCalls'
 import { ListContext } from '../../context/listContext/ListContext'
+import Topbar from '../../components/topbar/Topbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function ListList() {
   const { lists, dispatch } = useContext(ListContext)
 
   useEffect(() => {
     getLists(dispatch)
-    console.log('render')
   }, [dispatch])
-
-  console.log(lists)
 
   const handleDelete = (id) => {
     deleteList(id, dispatch)
@@ -57,19 +56,25 @@ export default function ListList() {
 
   return (
     <div className='productList'>
-      <Link to='/newlist'>
-        <button className='productAddButtonListTable'>Create</button>
-      </Link>
-      {lists && (
-        <DataGrid
-          rows={lists}
-          disableSelectionOnClick
-          columns={columns}
-          pageSize={8}
-          checkboxSelection
-          getRowId={(row) => row._id}
-        />
-      )}
+      <Topbar />
+      <div className='container'>
+        <Sidebar />
+        <div className='subContainer'>
+          <Link to='/newlist'>
+            <button className='productAddButtonListTable'>Create</button>
+          </Link>
+          {lists && (
+            <DataGrid
+              rows={lists}
+              disableSelectionOnClick
+              columns={columns}
+              pageSize={8}
+              checkboxSelection
+              getRowId={(row) => row._id}
+            />
+          )}
+        </div>
+      </div>
     </div>
   )
 }

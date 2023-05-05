@@ -8,6 +8,8 @@ import { useMemo } from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import axios from 'axios'
+import Topbar from '../../components/topbar/Topbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function Home() {
   const MONTHS = useMemo(
@@ -64,16 +66,22 @@ export default function Home() {
 
   return (
     <div className='home'>
-      <FeaturedInfo />
-      <Chart
-        data={userData}
-        title='User Analytics'
-        grid
-        dataKey='Active User'
-      />
-      <div className='homeWidgets'>
-        <WidgetSm />
-        <WidgetLg />
+      <Topbar />
+      <div className='container'>
+        <Sidebar />
+        <div className='subConatiner'>
+          <FeaturedInfo />
+          <Chart
+            data={userData}
+            title='User Analytics'
+            grid
+            dataKey='Active User'
+          />
+          <div className='homeWidgets'>
+            <WidgetSm />
+            <WidgetLg />
+          </div>
+        </div>
       </div>
     </div>
   )

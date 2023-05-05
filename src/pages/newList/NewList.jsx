@@ -4,8 +4,10 @@ import { createList } from '../../context/listContext/apiCalls'
 import { ListContext } from '../../context/listContext/ListContext'
 import { MovieContext } from '../../context/movieContext/MovieContext'
 import { getMovies } from '../../context/movieContext/apiCalls'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import SuccessModal from '../../components/SuccessModal/SuccessModal'
+import Topbar from '../../components/topbar/Topbar'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function NewProduct() {
   const [list, setList] = useState(null)
@@ -21,7 +23,7 @@ export default function NewProduct() {
     window.location.reload(false)
   }
 
-  const history = useHistory()
+  const history = useNavigate()
 
   useEffect(() => {
     getMovies(dispatchMovies)
@@ -72,59 +74,65 @@ export default function NewProduct() {
         handleOpen={handleOpen}
         modalBody='List Created Successfully!!'
       />
-      <h1 className='addProductTitle'>New Movie</h1>
-      <form>
-        <div className='addProductForm'>
-          <div className='formLeft'>
-            <div className='addProductItem'>
-              <label>Title</label>
-              <input
-                type='text'
-                placeholder='Horror Movie'
-                name='title'
-                onChange={handleMovie}
-              />
+      <Topbar />
+      <div className='container'>
+        <Sidebar />
+        <div className='subContainer'>
+          <h1 className='addProductTitle'>New Movie</h1>
+          <form>
+            <div className='addProductForm'>
+              <div className='formLeft'>
+                <div className='addProductItem'>
+                  <label>Title</label>
+                  <input
+                    type='text'
+                    placeholder='Horror Movie'
+                    name='title'
+                    onChange={handleMovie}
+                  />
+                </div>
+                <div className='addProductItem'>
+                  <label>Type</label>
+                  <select type='text' name='type' onChange={handleMovie}>
+                    <option>Select type</option>
+                    <option value='movie'>Movie</option>
+                    <option value='series'>Series</option>
+                  </select>
+                </div>
+                <div className='addProductItem'>
+                  <label>Genre</label>
+                  <input
+                    type='text'
+                    placeholder='Genre'
+                    name='genre'
+                    onChange={handleMovie}
+                  />
+                </div>
+              </div>
+              <div className='formRight'>
+                <div className='addProductItem'>
+                  <label>Content</label>
+                  <select
+                    multiple
+                    style={{ height: '200px' }}
+                    name='content'
+                    onChange={handleSelect}
+                  >
+                    {movies.map((movie) => (
+                      <option key={movie._id} value={movie._id}>
+                        {movie.title}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
             </div>
-            <div className='addProductItem'>
-              <label>Type</label>
-              <select type='text' name='type' onChange={handleMovie}>
-                <option>Select type</option>
-                <option value='movie'>Movie</option>
-                <option value='series'>Series</option>
-              </select>
-            </div>
-            <div className='addProductItem'>
-              <label>Genre</label>
-              <input
-                type='text'
-                placeholder='Genre'
-                name='genre'
-                onChange={handleMovie}
-              />
-            </div>
-          </div>
-          <div className='formRight'>
-            <div className='addProductItem'>
-              <label>Content</label>
-              <select
-                multiple
-                style={{ height: '200px' }}
-                name='content'
-                onChange={handleSelect}
-              >
-                {movies.map((movie) => (
-                  <option key={movie._id} value={movie._id}>
-                    {movie.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
+            <button className='addProductButton' onClick={handleSubmit}>
+              Create
+            </button>
+          </form>
         </div>
-        <button className='addProductButton' onClick={handleSubmit}>
-          Create
-        </button>
-      </form>
+      </div>
     </div>
   )
 }

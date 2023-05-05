@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { logout } from '../../context/authContext/AuthActions'
 import { AuthContext } from '../../context/authContext/AuthContext'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 const Logout = () => {
   const { dispatch } = useContext(AuthContext)
@@ -14,7 +14,7 @@ const Logout = () => {
   return (
     <div>
       logout
-      <Redirect to='/login' />
+      <Navigate to='/login' />
     </div>
   )
 }

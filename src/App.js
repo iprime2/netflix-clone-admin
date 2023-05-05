@@ -2,7 +2,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import Topbar from './components/topbar/Topbar'
 import './App.css'
 import Home from './pages/home/Home'
-import { HashRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { HashRouter, Route, Navigate, Routes } from 'react-router-dom'
 import UserList from './pages/userList/UserList'
 import User from './pages/user/User'
 import NewUser from './pages/newUser/NewUser'
@@ -19,54 +19,40 @@ import NewList from './pages/newList/NewList'
 
 function App() {
   const { user } = useContext(AuthContext)
-  console.log(user)
 
   return (
     <HashRouter>
-      <Switch>
-        <Route path='/login'>{user ? <Redirect to='/' /> : <Login />}</Route>
+      <Routes>
+        <Route
+          exact
+          path='/'
+          element={user ? <Home /> : <Navigate to='/login' />}
+        />
+        <Route path='/login' element={user ? <Navigate to='/' /> : <Login />} />
         {user && (
           <>
-            <Topbar />
-            <div className='container'>
-              <Sidebar />
-              <Route exact path='/'>
-                {user ? <Home /> : <Redirect to='/login' />}
-              </Route>
-              <Route path='/users'>
-                <UserList />
-              </Route>
-              <Route path='/user/:userId'>
-                <User />
-              </Route>
-              <Route path='/newUser'>
-                <NewUser />
-              </Route>
-              <Route path='/movies'>
-                <ProductList />
-              </Route>
-              <Route path='/product/:productId'>
-                <Product />
-              </Route>
-              <Route path='/newproduct'>
-                <NewProduct />
-              </Route>
-              <Route path='/lists'>
-                <ListList />
-              </Route>
-              <Route path='/list/:listId'>
-                <List />
-              </Route>
-              <Route path='/newlist'>
-                <NewList />
-              </Route>
-              <Route path='/logout'>
-                <Logout />
-              </Route>
-            </div>
+            <Route path='/users' element={<UserList />} />
+
+            <Route path='/user/:userId' element={<User />} />
+
+            <Route path='/newUser' element={<NewUser />} />
+
+            <Route path='/movies' element={<ProductList />} />
+
+            <Route path='/product/:productId' element={<Product />} />
+
+            <Route path='/newproduct' element={<NewProduct />} />
+
+            <Route path='/lists' element={<ListList />} />
+
+            <Route path='/list/:listId' element={<List />} />
+
+            <Route path='/newlist' element={<NewList />} />
+
+            <Route path='/logout' element={<Logout />} />
           </>
         )}
-      </Switch>
+      </Routes>
     </HashRouter>
   )
 }
