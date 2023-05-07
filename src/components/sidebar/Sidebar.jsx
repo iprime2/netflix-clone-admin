@@ -1,17 +1,8 @@
 import './sidebar.css'
 import { Link } from 'react-router-dom'
 import LineStyleIcon from '@mui/icons-material/LineStyle'
-import TrendingUpIcon from '@mui/icons-material/TrendingUp'
 import PermIdentityIcon from '@mui/icons-material/PermIdentity'
 import PlayArrowOutlinedIcon from '@mui/icons-material/PlayArrowOutlined'
-import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined'
-import BarChartIcon from '@mui/icons-material/BarChart'
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
-import ReportIcon from '@mui/icons-material/Report'
-import TimelineIcon from '@mui/icons-material/Timeline'
-import WorkOutlineIcon from '@mui/icons-material/WorkOutline'
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted'
 
 export default function Sidebar() {
@@ -27,14 +18,6 @@ export default function Sidebar() {
                 Home
               </li>
             </Link>
-            <li className='sidebarListItem'>
-              <TimelineIcon className='sidebarIcon' />
-              Analytics
-            </li>
-            <li className='sidebarListItem'>
-              <TrendingUpIcon className='sidebarIcon' />
-              Sales
-            </li>
           </ul>
         </div>
         <div className='sidebarMenu'>
@@ -58,44 +41,6 @@ export default function Sidebar() {
                 List
               </li>
             </Link>
-            <li className='sidebarListItem'>
-              <BarChartIcon className='sidebarIcon' />
-              Reports
-            </li>
-          </ul>
-        </div>
-        <div className='sidebarMenu'>
-          <h3 className='sidebarTitle'>Notifications</h3>
-          <ul className='sidebarList'>
-            <li className='sidebarListItem'>
-              <MailOutlineIcon className='sidebarIcon' />
-              Mail
-            </li>
-            <li className='sidebarListItem'>
-              <DynamicFeedIcon className='sidebarIcon' />
-              Feedback
-            </li>
-            <li className='sidebarListItem'>
-              <ChatBubbleOutlineIcon className='sidebarIcon' />
-              Messages
-            </li>
-          </ul>
-        </div>
-        <div className='sidebarMenu'>
-          <h3 className='sidebarTitle'>Staff</h3>
-          <ul className='sidebarList'>
-            <li className='sidebarListItem'>
-              <WorkOutlineIcon className='sidebarIcon' />
-              Manage
-            </li>
-            <li className='sidebarListItem'>
-              <TimelineIcon className='sidebarIcon' />
-              Analytics
-            </li>
-            <li className='sidebarListItem'>
-              <ReportIcon className='sidebarIcon' />
-              Reports
-            </li>
           </ul>
         </div>
       </div>
