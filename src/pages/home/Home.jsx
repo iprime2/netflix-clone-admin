@@ -69,7 +69,7 @@ export default function Home() {
       <Topbar />
       <div className='container'>
         <Sidebar />
-        <div className='subConatiner'>
+        <div className='subContainer'>
           <FeaturedInfo />
           <Chart
             data={userData}

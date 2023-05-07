@@ -18,8 +18,6 @@ export default function ProductList() {
     getMovies(dispatch)
   }, [dispatch])
 
-  console.log(movies)
-
   const handleDelete = (id) => {
     deleteMovie(id, dispatch)
   }
@@ -67,10 +65,8 @@ export default function ProductList() {
         return (
           <>
             <Link
-              to={{
-                pathname: '/product/' + params.row._id,
-                movie: params.row,
-              }}
+              to={`/product/` + params.row._id}
+              state={{ movie: params.row }}
             >
               <EditIcon
                 style={{ color: 'gray', marginRight: '10px', fontSize: '20px' }}

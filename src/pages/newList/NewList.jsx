@@ -18,6 +18,8 @@ export default function NewProduct() {
 
   const [open, setOpen] = useState(false)
 
+  console.log(list)
+
   const handleOpen = () => {
     setOpen(false)
     window.location.reload(false)
@@ -117,6 +119,7 @@ export default function NewProduct() {
                     style={{ height: '200px' }}
                     name='content'
                     onChange={handleSelect}
+                    selected='Peaky Blinders'
                   >
                     {movies.map((movie) => (
                       <option key={movie._id} value={movie._id}>

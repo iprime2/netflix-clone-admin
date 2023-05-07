@@ -8,6 +8,9 @@ import {
   deleteListStart,
   deleteListSuccess,
   getListsSuccess,
+  updateListStart,
+  updateListSuccess,
+  updateListFailure,
 } from './ListActions'
 
 import axios from 'axios'
@@ -20,7 +23,6 @@ export const getLists = async (dispatch) => {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       },
     })
-    console.log(res.data)
     dispatch(getListsSuccess(res.data))
   } catch (error) {
     dispatch(getListsFailure())
@@ -65,6 +67,27 @@ export const deleteList = async (id, dispatch) => {
     dispatch(deleteListSuccess(id))
   } catch (error) {
     dispatch(deleteListFailure())
+    console.log(error)
+  }
+}
+
+export const updateList = async (list, dispatch, id) => {
+  //dispatch()
+  try {
+    const res = await axios.put(
+      process.env.REACT_APP_API_URL + 'lists/' + id,
+      list,
+      {
+        headers: {
+          token:
+            'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+        },
+      }
+    )
+    console.log(res)
+    dispatch(updateListSuccess(list))
+  } catch (error) {
+    dispatch(updateListFailure())
     console.log(error)
   }
 }

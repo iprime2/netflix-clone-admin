@@ -1,83 +1,83 @@
-const ListReducer = (state, action) => {
+const MovieReducer = (state, action) => {
   switch (action.type) {
-    case 'GET_LISTS_START':
+    case 'GET_USERS_START':
       return {
-        lists: [],
+        users: [],
         isFetching: true,
         error: false,
       }
 
-    case 'GET_LISTS_SUCCESS':
+    case 'GET_USERS_SUCCESS':
       return {
-        lists: action.payload,
+        users: action.payload,
         isFetching: false,
         error: false,
       }
 
-    case 'GET_LISTS_FAILURE':
+    case 'GET_USERS_FAILURE':
       return {
-        lists: [],
+        users: [],
         isFetching: false,
         error: true,
       }
 
-    case 'DELETE_LIST_START':
+    case 'DELETE_USER_START':
       return {
         ...state,
         isFetching: true,
         error: false,
       }
 
-    case 'DELETE_LIST_SUCCESS':
+    case 'DELETE_USER_SUCCESS':
       return {
-        lists: state.lists.filter((list) => list._id !== action.payload),
+        users: state.users.filter((user) => user._id !== action.payload),
         isFetching: false,
         error: false,
       }
 
-    case 'DELETE_LIST_FAILURE':
-      return {
-        ...state,
-        isFetching: false,
-        error: true,
-      }
-
-    case 'CREATE_LIST_START':
-      return {
-        ...state,
-        isFetching: true,
-        error: false,
-      }
-
-    case 'CREATE_LIST_SUCCESS':
-      return {
-        lists: [...state.lists, action.payload],
-        isFetching: false,
-        error: false,
-      }
-
-    case 'CREATE_LIST_FAILURE':
+    case 'DELETE_USER_FAILURE':
       return {
         ...state,
         isFetching: false,
         error: true,
       }
 
-    case 'UPDATE_LIST_START':
+    case 'CREATE_USER_START':
       return {
         ...state,
         isFetching: true,
         error: false,
       }
 
-    case 'UPDATE_LIST_SUCCESS':
+    case 'CREATE_USER_SUCCESS':
       return {
-        lists: [...state.lists, action.payload],
+        users: [...state.users, action.payload],
         isFetching: false,
         error: false,
       }
 
-    case 'UPDATE_LIST_FAILURE':
+    case 'CREATE_USER_FAILURE':
+      return {
+        ...state,
+        isFetching: false,
+        error: true,
+      }
+
+    case 'UPDATE_USER_START':
+      return {
+        ...state,
+        isFetching: true,
+        error: false,
+      }
+
+    case 'UPDATE_USER_SUCCESS':
+      return {
+        users: [...state.users],
+        isFetching: false,
+        error: false,
+      }
+
+    case 'UPDATE_USER_FAILURE':
       return {
         ...state,
         isFetching: false,
@@ -89,4 +89,4 @@ const ListReducer = (state, action) => {
   }
 }
 
-export default ListReducer
+export default MovieReducer

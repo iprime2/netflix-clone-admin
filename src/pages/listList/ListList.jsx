@@ -34,12 +34,7 @@ export default function ListList() {
       renderCell: (params) => {
         return (
           <>
-            <Link
-              to={{
-                pathname: '/list/' + params.row._id,
-                list: params.row,
-              }}
-            >
+            <Link to={'/list/' + params.row._id} state={{ list: params.row }}>
               <EditIcon
                 style={{ color: 'gray', marginRight: '10px', fontSize: '20px' }}
               />

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './topbar.css'
 import { NotificationsNone, Language, Settings } from '@mui/icons-material'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { Link } from 'react-router-dom'
-
+import { AuthContext } from '../../context/authContext/AuthContext'
+import Avatar from '../../images/noAvatar.png'
 export default function Topbar() {
+  const { user } = useContext(AuthContext)
   return (
     <div className='topbar'>
       <div className='topbarWrapper'>
@@ -24,7 +26,7 @@ export default function Topbar() {
             <Settings />
           </div>
           <img
-            src='https://images.pexels.com/photos/1526814/pexels-photo-1526814.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+            src={user.profilePicture ? user.profilePicture : Avatar}
             alt=''
             className='topAvatar'
           />

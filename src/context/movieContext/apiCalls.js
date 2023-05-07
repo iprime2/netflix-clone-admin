@@ -72,12 +72,12 @@ export const deleteMovie = async (id, dispatch) => {
   }
 }
 
-export const updateMovie = async (movie, dispatch) => {
+export const updateMovie = async (movie, dispatch, id) => {
   dispatch(updateMovieStart())
 
   try {
     const res = await axios.put(
-      process.env.REACT_APP_API_URL + 'movies',
+      process.env.REACT_APP_API_URL + 'movies/' + id,
       movie,
       {
         headers: {

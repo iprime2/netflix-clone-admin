@@ -20,6 +20,13 @@
   cursor: pointer;
 }
 
+.selectInput {
+  margin-bottom: 10px;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid gray;
+}
+
 .productTop {
   display: flex;
 }
@@ -58,13 +65,14 @@
 }
 
 .productInfoItem {
-  width: 150px;
+  border-bottom: 1px solid black;
+  width: 250px;
   display: flex;
+  gap: 20px;
   justify-content: space-between;
 }
 
 .productInfoItem {
-  margin-right: 20px;
 }
 
 .productInfoValue {

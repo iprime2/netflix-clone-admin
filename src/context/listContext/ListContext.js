@@ -12,7 +12,6 @@ export const ListContext = createContext(INITIAL_STATE)
 
 export const ListContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ListReducer, INITIAL_STATE)
-  console.log(state.lists)
 
   return (
     <ListContext.Provider
