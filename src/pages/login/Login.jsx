@@ -7,7 +7,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { isFetching, dispatch } = useContext(AuthContext)
+  const { isFetching, dispatch,error } = useContext(AuthContext)
 
   const { loading, login } = useLogin()
 
@@ -46,6 +46,11 @@ const Login = () => {
 
         <span className='loginInfo'>
           Demo Account (id:"demo@demo.com" password:"123456")
+          {error && (
+          <span style={{ color: 'red', fontWeight: 'bold', fontSize: '22px' }}>
+            Something Went Wrong
+          </span>
+        )}
         </span>
       </div>
     </div>
