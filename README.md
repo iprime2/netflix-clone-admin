@@ -1,3 +1,24 @@
+######################################################################################
+
+I have created this movies streaming admin panel webapp by using MERN Stack.
+
+It is the movie streaming admin panel where you can create, update, delete the user, movies, content lists for main movie streaming webapp.
+
+Link to movie streaming admin panel webapp: https://sushil-netflix-clone-admin.on.fleek.co
+Link to movie streaming webapp: https://sushil-netflix-clone.on.fleek.co
+
+
+![Screenshot](netflix-admin-edit.png)
+![Screenshot](netflix-admin-movies.png)
+![Screenshot](netflix-admin-new.png)
+![Screenshot](netflix-admin.png)
+
+You can take a look at my webapp by clicking the link above.
+
+######################################################################################
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
